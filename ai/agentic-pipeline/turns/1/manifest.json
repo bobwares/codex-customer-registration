@@ -1,0 +1,33 @@
+{
+  "turnId": 1,
+  "timestampUtc": "2025-09-12T16:28:01Z",
+  "task": "create_app",
+  "changes": {
+    "added": [
+      "pom.xml",
+      "src/main/java/com/bobwares/customer/registration/RegistrationApplication.java",
+      "src/main/java/com/bobwares/customer/registration/PostalAddress.java",
+      "src/main/java/com/bobwares/customer/registration/PrivacySettings.java",
+      "src/main/java/com/bobwares/customer/registration/CustomerEmail.java",
+      "src/main/java/com/bobwares/customer/registration/CustomerPhoneNumber.java",
+      "src/main/java/com/bobwares/customer/registration/Customer.java",
+      "src/main/java/com/bobwares/customer/registration/CustomerRepository.java",
+      "src/main/java/com/bobwares/customer/registration/CustomerService.java",
+      "src/main/java/com/bobwares/customer/registration/api/CustomerDto.java",
+      "src/main/java/com/bobwares/customer/registration/api/CustomerController.java",
+      "src/main/java/com/bobwares/customer/registration/web/RestExceptionHandler.java",
+      "src/test/java/com/bobwares/customer/registration/CustomerServiceTests.java",
+      "src/test/java/com/bobwares/customer/registration/api/CustomerControllerIT.java",
+      "src/test/resources/application.properties",
+      "db/migrations/01_customer_tables.sql",
+      "db/scripts/customer_test_data.sql",
+      "e2e/customer.http",
+      "changelog.md",
+      "ai/agentic-pipeline/turns/1/changelog.md",
+      "ai/agentic-pipeline/turns/1/adr.md",
+      "ai/agentic-pipeline/turns/1/manifest.json"
+    ],
+    "modified": [],
+    "deleted": []
+  }
+}

@@ -1,0 +1,46 @@
+# App: Customer Registration
+# Package: e2e
+# File: customer.http
+# Version: 0.1.0
+# Turns: 1
+# Author: Codex Agent
+# Date: 2025-09-12T16:28:01Z
+# Exports: none
+# Description: HTTP file demonstrating CRUD operations.
+
+@host = http://localhost:{{PORT:8080}}
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "emails": ["test@example.com"],
+  "phoneNumbers": [{"type": "mobile", "number": "+15555550123"}],
+  "address": {"line1": "1 Main", "city": "City", "state": "ST", "postalCode": "12345", "country": "US"},
+  "privacySettings": {"marketingEmailsEnabled": true, "twoFactorEnabled": false}
+}
+
+### Get customer by id
+GET {{host}}/api/customers/{{id}}
+
+### Update customer
+PUT {{host}}/api/customers/{{id}}
+Content-Type: application/json
+
+{
+  "firstName": "Updated",
+  "lastName": "User",
+  "emails": ["test@example.com"],
+  "phoneNumbers": [{"type": "mobile", "number": "+15555550123"}],
+  "address": {"line1": "1 Main", "city": "City", "state": "ST", "postalCode": "12345", "country": "US"},
+  "privacySettings": {"marketingEmailsEnabled": true, "twoFactorEnabled": false}
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{id}}
+
+### Verify deletion
+GET {{host}}/api/customers/{{id}}
