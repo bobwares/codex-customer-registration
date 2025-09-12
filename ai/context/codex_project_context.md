@@ -16,7 +16,7 @@
 
 ## Pattern
 
-- java_spring_boot_postgres
+build project using pattern: spring-boot-mvc-jpa-postgresql
 
  
 ## Maven 
