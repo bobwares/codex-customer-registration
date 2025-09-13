@@ -1,3 +1,14 @@
+# /**
+# * App: Customer Registration
+# * Package: infrastructure
+# * File: docker-compose.yml
+# * Version: 0.1.0
+# * Turns: 1
+# * Author: codex
+# * Date: 2025-09-13T02:16:18Z
+# * Exports: postgres, app
+# * Description: Docker Compose configuration for application and PostgreSQL database.
+# */
 version: "3.9"
 
 services:

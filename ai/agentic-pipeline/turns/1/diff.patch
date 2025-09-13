@@ -1,0 +1,187 @@
+diff --git a/ai/agentic-pipeline/turns/1/changelog.md b/ai/agentic-pipeline/turns/1/changelog.md
+index b082b14..331b3d5 100644
+--- a/ai/agentic-pipeline/turns/1/changelog.md
++++ b/ai/agentic-pipeline/turns/1/changelog.md
+@@ -1,4 +1,4 @@
+-# Turn: 1 – $(date -u +%Y-%m-%dT%H:%M:%SZ)
++# Turn: 1 – 2025-09-13T02:16:18Z
+ 
+ ## prompt
+ 
+diff --git a/ai/agentic-pipeline/turns/index.csv b/ai/agentic-pipeline/turns/index.csv
+index bb441f7..aa7c77f 100644
+--- a/ai/agentic-pipeline/turns/index.csv
++++ b/ai/agentic-pipeline/turns/index.csv
+@@ -1,2 +1,2 @@
+ turnId,timestampUtc,task
+-1,$(date -u +%Y-%m-%dT%H:%M:%SZ),build project using pattern: spring-boot-mvc-jpa-postgresql
++1,2025-09-13T02:16:18Z,build project using pattern: spring-boot-mvc-jpa-postgresql
+diff --git a/ai/project-parser/ai-append.sh b/ai/project-parser/ai-append.sh
+index 57bef0b..1c71912 100755
+--- a/ai/project-parser/ai-append.sh
++++ b/ai/project-parser/ai-append.sh
+@@ -6,7 +6,7 @@
+ # * Version: 0.1.0
+ # * Turns: 1
+ # * Author: codex
+-# * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++# * Date: 2025-09-13T02:16:18Z
+ # * Exports: main
+ # * Description: Aggregates repository text files into ai/project-parser/output/ai-files.md
+ # */
+diff --git a/docker-compose.yml b/docker-compose.yml
+index b35e074..60a5a86 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -5,7 +5,7 @@
+ # * Version: 0.1.0
+ # * Turns: 1
+ # * Author: codex
+-# * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++# * Date: 2025-09-13T02:16:18Z
+ # * Exports: postgres, app
+ # * Description: Docker Compose configuration for application and PostgreSQL database.
+ # */
+diff --git a/src/main/java/com/bobwares/customer/registration/CustomerRegistrationApplication.java b/src/main/java/com/bobwares/customer/registration/CustomerRegistrationApplication.java
+index ece6628..4d42500 100644
+--- a/src/main/java/com/bobwares/customer/registration/CustomerRegistrationApplication.java
++++ b/src/main/java/com/bobwares/customer/registration/CustomerRegistrationApplication.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: CustomerRegistrationApplication
+  * Description: Entry point for the Spring Boot application.
+  */
+diff --git a/src/main/java/com/bobwares/customer/registration/customer/Customer.java b/src/main/java/com/bobwares/customer/registration/customer/Customer.java
+index 4a746ba..a841c92 100644
+--- a/src/main/java/com/bobwares/customer/registration/customer/Customer.java
++++ b/src/main/java/com/bobwares/customer/registration/customer/Customer.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: Customer
+  * Description: JPA entity representing a customer profile.
+  */
+diff --git a/src/main/java/com/bobwares/customer/registration/customer/CustomerController.java b/src/main/java/com/bobwares/customer/registration/customer/CustomerController.java
+index e1d720c..00d76f2 100644
+--- a/src/main/java/com/bobwares/customer/registration/customer/CustomerController.java
++++ b/src/main/java/com/bobwares/customer/registration/customer/CustomerController.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: CustomerController
+  * Description: REST controller exposing customer CRUD operations.
+  */
+diff --git a/src/main/java/com/bobwares/customer/registration/customer/CustomerRepository.java b/src/main/java/com/bobwares/customer/registration/customer/CustomerRepository.java
+index 7581bcd..b6c2620 100644
+--- a/src/main/java/com/bobwares/customer/registration/customer/CustomerRepository.java
++++ b/src/main/java/com/bobwares/customer/registration/customer/CustomerRepository.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: CustomerRepository
+  * Description: Spring Data repository for managing customers.
+  */
+diff --git a/src/main/java/com/bobwares/customer/registration/customer/CustomerService.java b/src/main/java/com/bobwares/customer/registration/customer/CustomerService.java
+index 5ac3aaa..5862561 100644
+--- a/src/main/java/com/bobwares/customer/registration/customer/CustomerService.java
++++ b/src/main/java/com/bobwares/customer/registration/customer/CustomerService.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: CustomerService
+  * Description: Provides business operations for managing customers.
+  */
+diff --git a/src/main/java/com/bobwares/customer/registration/customer/PhoneNumber.java b/src/main/java/com/bobwares/customer/registration/customer/PhoneNumber.java
+index 92f70c0..0f71037 100644
+--- a/src/main/java/com/bobwares/customer/registration/customer/PhoneNumber.java
++++ b/src/main/java/com/bobwares/customer/registration/customer/PhoneNumber.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: PhoneNumber
+  * Description: Embeddable representing a phone number for a customer.
+  */
+diff --git a/src/main/java/com/bobwares/customer/registration/customer/PostalAddress.java b/src/main/java/com/bobwares/customer/registration/customer/PostalAddress.java
+index ff9b6c3..3ef446c 100644
+--- a/src/main/java/com/bobwares/customer/registration/customer/PostalAddress.java
++++ b/src/main/java/com/bobwares/customer/registration/customer/PostalAddress.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: PostalAddress
+  * Description: Embeddable representing a postal address for a customer.
+  */
+diff --git a/src/main/java/com/bobwares/customer/registration/customer/PrivacySettings.java b/src/main/java/com/bobwares/customer/registration/customer/PrivacySettings.java
+index 5b769ce..8449889 100644
+--- a/src/main/java/com/bobwares/customer/registration/customer/PrivacySettings.java
++++ b/src/main/java/com/bobwares/customer/registration/customer/PrivacySettings.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: PrivacySettings
+  * Description: Embeddable representing privacy settings for a customer.
+  */
+diff --git a/src/main/resources/application.yml b/src/main/resources/application.yml
+index e860dfb..25425bf 100644
+--- a/src/main/resources/application.yml
++++ b/src/main/resources/application.yml
+@@ -5,7 +5,7 @@
+ # * Version: 0.1.0
+ # * Turns: 1
+ # * Author: codex
+-# * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++# * Date: 2025-09-13T02:16:18Z
+ # * Exports: application configuration
+ # * Description: Spring Boot application configuration.
+ # */
+diff --git a/src/main/resources/db/migration/V1__init.sql b/src/main/resources/db/migration/V1__init.sql
+index ec28a79..5ffa9b7 100644
+--- a/src/main/resources/db/migration/V1__init.sql
++++ b/src/main/resources/db/migration/V1__init.sql
+@@ -5,7 +5,7 @@
+ -- * Version: 0.1.0
+ -- * Turns: 1
+ -- * Author: codex
+--- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++-- * Date: 2025-09-13T02:16:18Z
+ -- * Exports: initial schema
+ -- * Description: Creates tables for customer registration domain.
+ -- */
+diff --git a/src/test/java/com/bobwares/customer/registration/customer/CustomerRepositoryIT.java b/src/test/java/com/bobwares/customer/registration/customer/CustomerRepositoryIT.java
+index 1ee0db1..344d551 100644
+--- a/src/test/java/com/bobwares/customer/registration/customer/CustomerRepositoryIT.java
++++ b/src/test/java/com/bobwares/customer/registration/customer/CustomerRepositoryIT.java
+@@ -5,7 +5,7 @@
+  * Version: 0.1.0
+  * Turns: 1
+  * Author: codex
+- * Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
++ * Date: 2025-09-13T02:16:18Z
+  * Exports: CustomerRepositoryIT
+  * Description: Integration test verifying persistence operations for Customer.
+  */
