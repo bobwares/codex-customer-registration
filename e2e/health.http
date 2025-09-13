@@ -1,0 +1,11 @@
+# App: common
+# Package: e2e
+# File: health.http
+# Version: 0.1.0
+# Author: AI
+# Date: 2025-09-04T22:11:01Z
+# Exports: GET /health
+# Description: Exercises the health endpoint for end-to-end verification.
+
+GET http://localhost:8080/health
+Accept: application/json

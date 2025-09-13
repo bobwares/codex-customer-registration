@@ -18,7 +18,6 @@
 
 build project using pattern: spring-boot-mvc-jpa-postgresql
 
- 
 ## Maven 
 
 - groupId: com.bobwares.customer
@@ -30,7 +29,7 @@ build project using pattern: spring-boot-mvc-jpa-postgresql
 - Domain Object
   Customer
 - REST API Request Schema
-  load ./schemas/customer.schema.json
+  load ./ai/context/schemas/customer.schema.json
 - REST API Response Schema
   load ./schemas/customer.schema.json
 - Persisted Data schema
