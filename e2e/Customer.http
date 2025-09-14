@@ -1,0 +1,44 @@
+# App: Customer Registration
+# Package: e2e
+# File: Customer.http
+# Version: 0.1.0
+# Turns: 1
+# Author: Codex Agent
+# Date: 2025-09-14T03:38:27Z
+# Exports: none
+# Description: E2E HTTP scenario for Customer CRUD operations.
+
+@host = http://localhost:{{PORT:8080}}
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Tom",
+  "lastName": "Jones",
+  "emails": ["tom@example.com"],
+  "privacySettings": {"marketingEmailsEnabled": true, "twoFactorEnabled": false}
+}
+
+> {% client.global.set("id", response.body.id); %}
+
+### Get customer
+GET {{host}}/api/customers/{{id}}
+
+### Update customer
+PUT {{host}}/api/customers/{{id}}
+Content-Type: application/json
+
+{
+  "firstName": "Thomas",
+  "lastName": "Jones",
+  "emails": ["tom@example.com"],
+  "privacySettings": {"marketingEmailsEnabled": true, "twoFactorEnabled": false}
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{id}}
+
+### Verify not found
+GET {{host}}/api/customers/{{id}}
