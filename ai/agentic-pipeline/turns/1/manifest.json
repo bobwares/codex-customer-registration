@@ -1,0 +1,32 @@
+{
+  "turnId": 1,
+  "timestampUtc": "2025-09-14T03:38:27Z",
+  "task": "spring-boot-mvc-jpa-postgresql application",
+  "changes": {
+    "added": [
+      "pom.xml",
+      "src/main/java/com/bobwares/customer/registration/CustomerRegistrationApplication.java",
+      "src/main/resources/application.yml",
+      "src/main/resources/db/changelog/db.changelog-master.yml",
+      "db/migrations/01_customer_tables.sql",
+      "db/scripts/customer_test_data.sql",
+      "db/README.md",
+      "src/main/java/com/bobwares/customer/registration/PhoneType.java",
+      "src/main/java/com/bobwares/customer/registration/PostalAddress.java",
+      "src/main/java/com/bobwares/customer/registration/PrivacySettings.java",
+      "src/main/java/com/bobwares/customer/registration/CustomerEmail.java",
+      "src/main/java/com/bobwares/customer/registration/CustomerPhoneNumber.java",
+      "src/main/java/com/bobwares/customer/registration/Customer.java",
+      "src/main/java/com/bobwares/customer/registration/CustomerRepository.java",
+      "src/main/java/com/bobwares/customer/registration/CustomerService.java",
+      "src/main/java/com/bobwares/customer/registration/api/CustomerDto.java",
+      "src/main/java/com/bobwares/customer/registration/api/CustomerController.java",
+      "src/main/java/com/bobwares/customer/registration/web/RestExceptionHandler.java",
+      "src/test/java/com/bobwares/customer/registration/CustomerServiceTests.java",
+      "src/test/java/com/bobwares/customer/registration/CustomerControllerIT.java",
+      "e2e/Customer.http",
+      "changelog.md",
+      "AGENTS.md"
+    ]
+  }
+}

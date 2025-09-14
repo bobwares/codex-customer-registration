@@ -1,0 +1,14 @@
+# App: Customer Registration
+# Package: db.changelog
+# File: db.changelog-master.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: Codex Agent
+# Date: 2025-09-14T03:38:27Z
+# Exports: none
+# Description: Liquibase changelog including customer tables migration.
+
+databaseChangeLog:
+  - include:
+      file: classpath:db/migrations/01_customer_tables.sql
+      relativeToChangelogFile: false
