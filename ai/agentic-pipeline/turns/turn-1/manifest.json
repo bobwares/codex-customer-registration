@@ -1,0 +1,51 @@
+{
+  "turnId": 1,
+  "timestampUtc": "2025-10-23T22:12:31Z",
+  "actor": {
+    "initiator": "user",
+    "agent": "gpt-5-codex"
+  },
+  "task": {
+    "name": "generate-normalized-tables",
+    "inputs": [
+      "ai/context/schemas/customer.schema.json"
+    ],
+    "parameters": {
+      "dialect": "postgresql"
+    }
+  },
+  "artifacts": {
+    "changelog": "changelog.md",
+    "adr": "adr.md",
+    "diff": null,
+    "logs": [],
+    "reports": []
+  },
+  "changes": {
+    "added": [
+      "db/migrations/01_customer_profile_tables.sql",
+      "db/README.md",
+      "ai/agentic-pipeline/turns_index.csv",
+      "ai/agentic-pipeline/turns/turn-1/changelog.md",
+      "ai/agentic-pipeline/turns/turn-1/adr.md",
+      "ai/agentic-pipeline/turns/turn-1/session_context_values.md",
+      "ai/agentic-pipeline/turns/turn-1/manifest.json"
+    ],
+    "modified": [],
+    "deleted": []
+  },
+  "metrics": {
+    "filesChanged": 7,
+    "linesAdded": 307,
+    "linesDeleted": 0,
+    "testsPassed": 0,
+    "testsFailed": 0,
+    "coverageDeltaPct": 0
+  },
+  "validation": {
+    "adrPresent": true,
+    "changelogPresent": true,
+    "lintStatus": "not-run",
+    "testsStatus": "not-run"
+  }
+}
