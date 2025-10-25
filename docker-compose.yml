@@ -1,9 +1,24 @@
+# App: Customer Registration
+# Package: docker
+# File: docker-compose.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: AI Agent
+# Date: 2025-10-25T09:49:02Z
+# Exports: Docker Compose service definitions
+# Description: Orchestrates the Customer Registration application and PostgreSQL database for local development.
+
 version: "3.9"
 
 services:
-  postgres:
-    image: postgres:16
-    container_name: ${COMPOSE_PROJECT_NAME}-postgres
+  postgresql-db:
+    profiles: ["postgresql"]
+    build:
+      context: .
+      dockerfile: docker/postgresql/Dockerfile
+    container_name: ${COMPOSE_PROJECT_NAME}-postgresql
+    env_file:
+      - .env.postgresql
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USERNAME}
@@ -12,6 +27,8 @@ services:
       - "${DB_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./db/migrations:/docker-entrypoint-initdb.d/migrations:ro
+      - ./db/scripts:/docker-entrypoint-initdb.d/scripts:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_NAME}"]
       interval: 10s
@@ -19,15 +36,18 @@ services:
       retries: 10
 
   app:
+    profiles: ["postgresql"]
     build:
       context: .
       dockerfile: Dockerfile
     container_name: ${COMPOSE_PROJECT_NAME}
     depends_on:
-      postgres:
+      postgresql-db:
         condition: service_healthy
+    env_file:
+      - .env.postgresql
     environment:
-      DB_HOST: postgres
+      DB_HOST: postgresql-db
       DB_PORT: 5432
       DB_NAME: ${DB_NAME}
       DB_USERNAME: ${DB_USERNAME}
