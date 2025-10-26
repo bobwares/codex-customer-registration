@@ -1,0 +1,17 @@
+# App: Customer Registration
+# Package: e2e
+# File: actuator.http
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-26T00:40:26Z
+# Exports: Actuator requests
+# Description: HTTP snippets to verify actuator endpoints.
+
+@host = http://localhost:{{port=8080}}
+
+### Health
+GET {{host}}/actuator/health
+
+### Info
+GET {{host}}/actuator/info

@@ -1,0 +1,88 @@
+# App: Customer Registration
+# Package: e2e
+# File: customer.http
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-26T00:40:26Z
+# Exports: Customer API scenario
+# Description: Executes create, read, update, delete flow for the customer API.
+
+@host = http://localhost:{{port=8080}}
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Ada",
+  "middleName": "M",
+  "lastName": "Lovelace",
+  "emails": ["ada.lovelace@example.com"],
+  "address": {
+    "line1": "10 Downing St",
+    "line2": "",
+    "city": "London",
+    "state": "LDN",
+    "postalCode": "SW1A 2AA",
+    "country": "GB"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  },
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+441234567890"
+    }
+  ]
+}
+
+### Extract created id
+@customerId = {{response.body.$.id}}
+
+### Get customer
+GET {{host}}/api/customers/{{customerId}}
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "id": "{{customerId}}",
+  "firstName": "Ada",
+  "middleName": "M",
+  "lastName": "Byron",
+  "emails": ["ada.byron@example.com"],
+  "address": {
+    "line1": "10 Downing St",
+    "line2": "",
+    "city": "London",
+    "state": "LDN",
+    "postalCode": "SW1A 2AA",
+    "country": "GB"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": false,
+    "twoFactorEnabled": true
+  },
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+441234567890"
+    }
+  ]
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Confirm deletion
+GET {{host}}/api/customers/{{customerId}}
+
+> {%
+client.test("Should be not found", function() {
+  client.assert(response.status === 404, "Expected 404 after deletion");
+});
+%}
