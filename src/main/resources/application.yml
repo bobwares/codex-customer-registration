@@ -1,0 +1,52 @@
+# App: Customer Registration
+# Package: resources
+# File: application.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-26T00:40:26Z
+# Exports: Spring Boot configuration for datasource, JPA, Liquibase, management, and app metadata
+# Description: Configures environment-driven properties for running the Customer Registration service.
+
+spring:
+  application:
+    name: ${APP_NAME:customer-registration}
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:customer_registration}
+    username: ${DATABASE_USERNAME:customer}
+    password: ${DATABASE_PASSWORD:customer}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc.time_zone: UTC
+    open-in-view: false
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    default-schema: ${DATABASE_SCHEMA:public}
+    contexts: ${LIQUIBASE_CONTEXTS:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  port: ${APP_PORT:8080}
+
+app:
+  name: ${APP_NAME:customer-registration}
+  port: ${APP_PORT:8080}

@@ -1,0 +1,26 @@
+# App: Customer Registration
+# Package: test-resources
+# File: application-test.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-26T00:40:26Z
+# Exports: Test profile configuration
+# Description: Configures an in-memory H2 database for integration and service tests.
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:customer_test;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  liquibase:
+    enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+
+logging:
+  level:
+    org.hibernate.SQL: warn
