@@ -1,0 +1,21 @@
+# App: Customer Registration
+# Package: com.bobwares.customer.registration
+# File: application-test.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-27T23:24:28Z
+# Exports: Test configuration
+# Description: Provides default application properties used during integration testing.
+app:
+  name: customer-registration-test
+  port: 0
+  default-tax-rate: 0.0
+  default-shipping-cost: 0.0
+  supported-currencies:
+    - USD
+    - EUR
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate

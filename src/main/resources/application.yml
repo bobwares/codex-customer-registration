@@ -1,0 +1,62 @@
+# App: Customer Registration
+# Package: com.bobwares.customer.registration
+# File: application.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-27T23:24:28Z
+# Exports: Spring Boot configuration
+# Description: Configures the Spring Boot application, datasource, Liquibase, actuator, and custom app properties.
+spring:
+  application:
+    name: ${APP_NAME:customer-registration}
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:registration}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc.time_zone: UTC
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    enabled: true
+    parameters:
+      appName: ${APP_NAME}
+  main:
+    allow-bean-definition-overriding: false
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  port: ${APP_PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  observations:
+    key-values:
+      application: ${APP_NAME}
+
+app:
+  name: ${APP_NAME:customer-registration}
+  port: ${APP_PORT:8080}
+  default-tax-rate: ${APP_DEFAULT_TAX_RATE:0.0}
+  default-shipping-cost: ${APP_DEFAULT_SHIPPING_COST:0.0}
+  supported-currencies: ${APP_SUPPORTED_CURRENCIES:USD,EUR}

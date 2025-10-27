@@ -1,0 +1,143 @@
+# App: Customer Registration
+# Package: com.bobwares.customer.registration
+# File: db/changelog/db.changelog-master.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-27T23:24:28Z
+# Exports: Liquibase change log
+# Description: Aggregates Liquibase changesets that create core customer tables and supporting collections.
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-customer
+      author: bobwares
+      changes:
+        - createTable:
+            tableName: customer
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: middle_name
+                  type: varchar(100)
+              - column:
+                  name: last_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_line1
+                  type: varchar(255)
+              - column:
+                  name: address_line2
+                  type: varchar(255)
+              - column:
+                  name: address_city
+                  type: varchar(120)
+              - column:
+                  name: address_state
+                  type: varchar(120)
+              - column:
+                  name: address_postal_code
+                  type: varchar(32)
+              - column:
+                  name: address_country
+                  type: char(2)
+              - column:
+                  name: privacy_marketing_emails_enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: privacy_two_factor_enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: customer_emails
+            columns:
+              - column:
+                  name: customer_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: customer_emails
+            columnNames: customer_id, email
+            constraintName: pk_customer_emails
+        - addForeignKeyConstraint:
+            constraintName: fk_customer_emails_customer
+            baseTableName: customer_emails
+            baseColumnNames: customer_id
+            referencedTableName: customer
+            referencedColumnNames: id
+            onDelete: CASCADE
+        - addUniqueConstraint:
+            tableName: customer_emails
+            columnNames: email
+            constraintName: uq_customer_email_global
+        - createTable:
+            tableName: customer_phone_numbers
+            columns:
+              - column:
+                  name: customer_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone_type
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: customer_phone_numbers
+            columnNames: customer_id, phone_number
+            constraintName: pk_customer_phone_numbers
+        - addForeignKeyConstraint:
+            constraintName: fk_customer_phone_numbers_customer
+            baseTableName: customer_phone_numbers
+            baseColumnNames: customer_id
+            referencedTableName: customer
+            referencedColumnNames: id
+            onDelete: CASCADE
+        - createIndex:
+            indexName: idx_customer_phone_number
+            tableName: customer_phone_numbers
+            columns:
+              - column:
+                  name: phone_number
+        - createIndex:
+            indexName: idx_customer_last_name
+            tableName: customer
+            columns:
+              - column:
+                  name: last_name
