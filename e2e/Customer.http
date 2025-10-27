@@ -1,0 +1,82 @@
+### App: Customer Registration
+### Package: com.bobwares.customer.registration
+### File: e2e/Customer.http
+### Version: 0.1.0
+### Turns: 1
+### Author: Bobwares (bobwares@outlook.com)
+### Date: 2025-10-27T23:24:28Z
+### Exports: Customer CRUD scenario
+### Description: Executes end-to-end customer CRUD flow against the REST API.
+@host = http://localhost:{{port}}
+@customerId = {{customerId}}
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Ada",
+  "middleName": "Grace",
+  "lastName": "Lovelace",
+  "emails": ["ada@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+15551234567"
+    }
+  ],
+  "address": {
+    "line1": "123 Main St",
+    "city": "Metropolis",
+    "state": "NY",
+    "postalCode": "10001",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  }
+}
+
+> {% client.global.set("customerId", response.body.id); %}
+
+### Read customer
+GET {{host}}/api/customers/{{customerId}}
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "id": "{{customerId}}",
+  "firstName": "Ada",
+  "middleName": "Grace",
+  "lastName": "Lovelace",
+  "emails": ["ada@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+15551234567"
+    }
+  ],
+  "address": {
+    "line1": "123 Main St",
+    "city": "Gotham",
+    "state": "NY",
+    "postalCode": "10001",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  }
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Confirm deletion
+GET {{host}}/api/customers/{{customerId}}
+> {%- client.test("Should return 404", function() {
+>      client.assert(response.status === 404, "Expected 404 status");
+> }); %}
