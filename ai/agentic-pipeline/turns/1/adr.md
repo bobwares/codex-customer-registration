@@ -1,0 +1,23 @@
+# ADR: Establish Initial Spring Boot Customer Registration Service
+
+- Turn: 1
+- Date: 2025-10-27T06:51:00Z
+- Context:
+    - Build the first iteration of the Customer Registration backend using the spring-boot-mvc-jpa-postgresql pattern.
+    - Provide normalized database assets, seed data, Docker tooling, and a production-style REST API with validation and tests.
+- Decision:
+    - Scaffolded a Java 21 Spring Boot application with configuration properties, actuator endpoints, and OpenAPI support.
+    - Modeled the customer domain using JPA entities mirroring the normalized PostgreSQL schema and exposed CRUD REST endpoints with DTOs and validation.
+    - Generated SQL migrations, test data, Docker Compose assets, and a Makefile to streamline database provisioning.
+    - Adopted in-memory H2 for automated tests while retaining PostgreSQL-compatible mappings, enabling CI execution without Docker.
+- Rationale:
+    - Aligning code structure with the provided pattern guarantees consistency with organizational standards and simplifies future turns.
+    - Creating explicit schema artifacts plus seed data ensures backend code and persistence stay synchronized.
+    - Comprehensive REST controllers and service tests provide regression coverage and confidence in core business flows.
+    - Using H2 for tests avoids reliance on unavailable Docker while maintaining compatibility through PostgreSQL mode and dialect settings.
+- Consequences:
+    - Positive: Developers receive a fully runnable service with database automation, API documentation, and tests that pass in constrained environments.
+    - Negative: Integration tests use H2 instead of PostgreSQL, so subtle dialect differences should be validated against PostgreSQL in later stages.
+- Links:
+    - Pattern: spring-boot-mvc-jpa-postgresql (/workspace/codex-agentic-ai-pipeline/application-implementation-patterns/spring-boot-mvc-jpa-postgresql)
+    - Artifacts: src/main/java/com/bobwares/customer/registration, db/migrations/01_customer_profile_tables.sql, docker-compose.yml, src/test/java/com/bobwares/customer/registration

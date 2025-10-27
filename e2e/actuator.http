@@ -1,0 +1,19 @@
+###
+### App: Customer Registration
+### Package: e2e
+### File: actuator.http
+### Version: 0.1.0
+### Turns: 1
+### Author: ChatGPT Codex
+### Date: 2025-02-14T00:00:00Z
+### Exports: actuator-smoke
+### Description: HTTP smoke checks for Spring Boot actuator endpoints.
+###
+
+@host = http://localhost:{{port}}
+
+### Health check
+GET {{host}}/actuator/health
+
+### Info endpoint
+GET {{host}}/actuator/info
