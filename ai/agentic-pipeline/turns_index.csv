@@ -1,0 +1,2 @@
+turnId,timestampUtc,task,branch,tag,headAfter,testsPassed,testsFailed,coverageDeltaPct
+1,2025-10-27T06:51:30Z,execute-turn-1,work,turn/1,9a5da775ae18c2701ffc62ef48c3dfbfa0eeb0d2,6,0,0
