@@ -1,0 +1,11 @@
+### Actuator health probe
+GET http://localhost:8080/actuator/health
+Accept: application/json
+
+### Actuator info
+GET http://localhost:8080/actuator/info
+Accept: application/json
+
+### Application environment metadata
+GET http://localhost:8080/meta/env
+Accept: application/json
