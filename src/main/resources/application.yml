@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: ${CUSTOMER_REG_DB_URL:jdbc:h2:mem:customer_registration;MODE=PostgreSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1}
+    username: ${CUSTOMER_REG_DB_USERNAME:sa}
+    password: ${CUSTOMER_REG_DB_PASSWORD:password}
+    driver-class-name: ${CUSTOMER_REG_DB_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      mode: never
+server:
+  port: ${PORT:8080}
