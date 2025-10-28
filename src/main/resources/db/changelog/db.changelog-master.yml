@@ -1,0 +1,12 @@
+# App: Customer Registration
+# Package: resources.db.changelog
+# File: db.changelog-master.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: AI
+# Date: 2025-10-28T15:32:47Z
+# Exports: databaseChangeLog
+# Description: Liquibase master changelog aggregating database change sets for the Customer Registration domain.
+databaseChangeLog:
+  - include:
+      file: db/changelog/db.changelog-001-init.sql
