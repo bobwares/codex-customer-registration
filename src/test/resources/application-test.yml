@@ -1,0 +1,23 @@
+# **
+# * App: Customer Registration
+# * Package: test-config
+# * File: application-test.yml
+# * Version: 0.1.0
+# * Turns: 1
+# * Author: AI Agent
+# * Date: 2025-10-29T22:24:49Z
+# * Exports: test-configuration
+# * Description: Test profile overrides disabling Liquibase and using in-memory H2 database for smoke tests.
+# **
+spring:
+  liquibase:
+    enabled: false
+  datasource:
+    url: jdbc:h2:mem:customer-test-db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update

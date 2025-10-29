@@ -1,0 +1,80 @@
+# **
+# * App: Customer Registration
+# * Package: e2e
+# * File: customer.http
+# * Version: 0.1.0
+# * Turns: 1
+# * Author: AI Agent
+# * Date: 2025-10-29T22:24:49Z
+# * Exports: customer-crud-http
+# * Description: End-to-end HTTP script exercising the customer CRUD lifecycle.
+# **
+@host = http://localhost:{{APP_PORT:8080}}
+@customerId = {{customer.response.body.$.id}}
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Eve",
+  "middleName": "A",
+  "lastName": "Johnson",
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  },
+  "address": {
+    "line1": "42 Galaxy Way",
+    "line2": "Suite 5",
+    "city": "Metropolis",
+    "state": "NY",
+    "postalCode": "10001",
+    "country": "US"
+  },
+  "emails": ["eve@example.com"],
+  "phoneNumbers": [
+    { "type": "MOBILE", "number": "+15551230000" }
+  ]
+}
+
+> {% client.global.set("customer", response); %}
+
+### Get customer
+GET {{host}}/api/customers/{{customerId}}
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "firstName": "Evelyn",
+  "middleName": "A",
+  "lastName": "Johnson",
+  "privacySettings": {
+    "marketingEmailsEnabled": false,
+    "twoFactorEnabled": true
+  },
+  "address": {
+    "line1": "42 Galaxy Way",
+    "line2": "Suite 8",
+    "city": "Metropolis",
+    "state": "NY",
+    "postalCode": "10002",
+    "country": "US"
+  },
+  "emails": ["eve@example.com"],
+  "phoneNumbers": [
+    { "type": "HOME", "number": "+15559870000" }
+  ]
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Confirm deletion
+GET {{host}}/api/customers/{{customerId}}
+
+> {%- if response.status === 404 -%}
+>   // Expected not found after deletion
+> {%- endif -%}

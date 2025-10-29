@@ -1,0 +1,18 @@
+# **
+# * App: Customer Registration
+# * Package: e2e
+# * File: actuator.http
+# * Version: 0.1.0
+# * Turns: 1
+# * Author: AI Agent
+# * Date: 2025-10-29T22:24:49Z
+# * Exports: actuator-http-tests
+# * Description: HTTP requests that exercise actuator endpoints.
+# **
+@host = http://localhost:{{APP_PORT:8080}}
+
+### Health
+GET {{host}}/actuator/health
+
+### Info
+GET {{host}}/actuator/info
