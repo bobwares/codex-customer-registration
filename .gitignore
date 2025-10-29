@@ -1,0 +1,49 @@
+# App: Customer Registration
+# Package: com.bobwares.customer.registration
+# File: .gitignore
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-29T05:30:00Z
+# Exports: n/a
+# Description: Ignore rules for Maven build artifacts and IDE files.
+.env*
+/ai/project-parser/output
+
+.DS_Store
+/ai/output
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+.DS_Store
+**/.DS_Store

@@ -1,0 +1,86 @@
+# App: Customer Registration
+# Package: com.bobwares.customer.registration
+# File: Customer.http
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-29T05:30:00Z
+# Exports: Customer CRUD flow
+# Description: Demonstrates create, read, update, delete workflow for customers.
+@host = http://localhost:8080
+@contentType = application/json
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Alice",
+  "middleName": "M",
+  "lastName": "Example",
+  "emails": [
+    "alice@example.com",
+    "alice.backup@example.com"
+  ],
+  "address": {
+    "line1": "123 Main",
+    "line2": "Suite 5",
+    "city": "Metropolis",
+    "state": "NY",
+    "postalCode": "12345",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  },
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+18005550100"
+    }
+  ]
+}
+>
+{% assign customerId = response.body.id %}
+
+### Read customer by id
+GET {{host}}/api/customers/{{customerId}}
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Alice",
+  "middleName": "Q",
+  "lastName": "Updated",
+  "emails": [
+    "alice.updated@example.com"
+  ],
+  "address": {
+    "line1": "123 Updated",
+    "line2": "Suite 9",
+    "city": "Metropolis",
+    "state": "NY",
+    "postalCode": "54321",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": false,
+    "twoFactorEnabled": true
+  },
+  "phoneNumbers": [
+    {
+      "type": "HOME",
+      "number": "+18005550101"
+    }
+  ]
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Verify deletion (expect 404)
+GET {{host}}/api/customers/{{customerId}}
+

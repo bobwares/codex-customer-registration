@@ -1,0 +1,10 @@
+# Session Context
+- SANDBOX_BASE_DIRECTORY: /workspace
+- AGENTIC_PIPELINE_PROJECT: /workspace/codex-agentic-ai-pipeline
+- TARGET_PROJECT: /workspace/codex-customer-registration-java
+- PROJECT_CONTEXT: /workspace/codex-customer-registration-java/ai/context/project_context.md
+- ACTIVE_PATTERN_NAME: spring-boot-mvc-jpa-postgresql
+- ACTIVE_PATTERN_PATH: /workspace/codex-agentic-ai-pipeline/application-implementation-patterns/spring-boot-mvc-jpa-postgresql
+- EXECUTION_PLAN: /workspace/codex-agentic-ai-pipeline/application-implementation-patterns/spring-boot-mvc-jpa-postgresql/execution-plan.md
+- TURN_ID: 2
+- CURRENT_TURN_DIRECTORY: /workspace/codex-customer-registration-java/ai/agentic-pipeline/turns/2
