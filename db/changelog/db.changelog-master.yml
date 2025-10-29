@@ -1,0 +1,158 @@
+# App: Customer Registration
+# Package: com.bobwares.customer.registration
+# File: db.changelog-master.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-29T05:30:00Z
+# Exports: Liquibase changelog
+# Description: Defines database schema for customers and supporting tables.
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-customers
+      author: bobwares
+      changes:
+        - createTable:
+            tableName: customers
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(80)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: middle_name
+                  type: varchar(80)
+              - column:
+                  name: last_name
+                  type: varchar(80)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: primary_email
+                  type: varchar(320)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_line1
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_line2
+                  type: varchar(128)
+              - column:
+                  name: address_city
+                  type: varchar(96)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_state
+                  type: varchar(96)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_postal_code
+                  type: varchar(24)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_country
+                  type: char(2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: marketing_emails_enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: two_factor_enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            tableName: customers
+            columnNames: primary_email
+            constraintName: uk_customers_email
+  - changeSet:
+      id: 002-create-customer-emails
+      author: bobwares
+      changes:
+        - createTable:
+            tableName: customer_emails
+            columns:
+              - column:
+                  name: customer_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(320)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: customer_emails
+            columnNames: customer_id, email
+            constraintName: pk_customer_emails
+        - addForeignKeyConstraint:
+            baseTableName: customer_emails
+            baseColumnNames: customer_id
+            referencedTableName: customers
+            referencedColumnNames: id
+            onDelete: CASCADE
+            constraintName: fk_customer_emails_customer
+        - addUniqueConstraint:
+            tableName: customer_emails
+            columnNames: email
+            constraintName: uk_customer_emails_email
+  - changeSet:
+      id: 003-create-customer-phones
+      author: bobwares
+      changes:
+        - createTable:
+            tableName: customer_phone_numbers
+            columns:
+              - column:
+                  name: customer_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: number
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: customer_phone_numbers
+            columnNames: customer_id, number
+            constraintName: pk_customer_phone_numbers
+        - addForeignKeyConstraint:
+            baseTableName: customer_phone_numbers
+            baseColumnNames: customer_id
+            referencedTableName: customers
+            referencedColumnNames: id
+            onDelete: CASCADE
+            constraintName: fk_customer_phone_numbers_customer

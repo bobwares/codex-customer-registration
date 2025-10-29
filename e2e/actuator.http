@@ -1,0 +1,19 @@
+# App: Customer Registration
+# Package: com.bobwares.customer.registration
+# File: actuator.http
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-29T05:30:00Z
+# Exports: Actuator request flow
+# Description: Exercise actuator and meta endpoints for smoke validation.
+@host = http://localhost:8080
+
+### Actuator health
+GET {{host}}/actuator/health
+
+### Actuator info
+GET {{host}}/actuator/info
+
+### Meta environment snapshot
+GET {{host}}/meta/env
