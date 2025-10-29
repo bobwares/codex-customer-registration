@@ -1,0 +1,186 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-extensions
+      author: bobwares
+      changes:
+        - sql:
+            splitStatements: true
+            stripComments: true
+            sql: |
+              CREATE EXTENSION IF NOT EXISTS "citext";
+              CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+  - changeSet:
+      id: 002-create-phone-type
+      author: bobwares
+      changes:
+        - createType:
+            schemaName: public
+            typeName: phone_contact_type
+            values:
+              - mobile
+              - home
+              - work
+              - other
+  - changeSet:
+      id: 003-create-customers
+      author: bobwares
+      changes:
+        - createTable:
+            tableName: customers
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_customers
+                    nullable: false
+                  defaultValueComputed: gen_random_uuid()
+              - column:
+                  name: first_name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: middle_name
+                  type: VARCHAR(100)
+              - column:
+                  name: last_name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_line1
+                  type: VARCHAR(255)
+              - column:
+                  name: address_line2
+                  type: VARCHAR(255)
+              - column:
+                  name: address_city
+                  type: VARCHAR(100)
+              - column:
+                  name: address_state
+                  type: VARCHAR(100)
+              - column:
+                  name: address_postal_code
+                  type: VARCHAR(20)
+              - column:
+                  name: address_country
+                  type: CHAR(2)
+              - column:
+                  name: marketing_emails_enabled
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: two_factor_enabled
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: CURRENT_TIMESTAMP
+  - changeSet:
+      id: 004-create-customer-emails
+      author: bobwares
+      changes:
+        - createTable:
+            tableName: customer_emails
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_customer_emails
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: CITEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: customer_emails
+            baseColumnNames: customer_id
+            referencedTableName: customers
+            referencedColumnNames: id
+            constraintName: fk_customer_email_customer
+            onDelete: CASCADE
+        - addUniqueConstraint:
+            tableName: customer_emails
+            columnNames: email
+            constraintName: uq_customer_email_unique
+        - addUniqueConstraint:
+            tableName: customer_emails
+            columnNames: customer_id,email
+            constraintName: uq_customer_email_per_customer
+        - createIndex:
+            tableName: customer_emails
+            indexName: idx_customer_emails_customer_id
+            columns:
+              - column:
+                  name: customer_id
+  - changeSet:
+      id: 005-create-customer-phones
+      author: bobwares
+      changes:
+        - createTable:
+            tableName: customer_phone_numbers
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_customer_phone
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: contact_type
+                  type: phone_contact_type
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: VARCHAR(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: customer_phone_numbers
+            baseColumnNames: customer_id
+            referencedTableName: customers
+            referencedColumnNames: id
+            constraintName: fk_customer_phone_customer
+            onDelete: CASCADE
+        - addUniqueConstraint:
+            tableName: customer_phone_numbers
+            columnNames: customer_id,phone_number
+            constraintName: uq_customer_phone_per_customer
+        - createIndex:
+            tableName: customer_phone_numbers
+            indexName: idx_customer_phone_customer_id
+            columns:
+              - column:
+                  name: customer_id

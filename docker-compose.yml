@@ -3,38 +3,24 @@ version: "3.9"
 services:
   postgres:
     image: postgres:16
-    container_name: ${COMPOSE_PROJECT_NAME}-postgres
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    container_name: postgres-shopping
+    restart: unless-stopped
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "${DATABASE_PORT}:5432"
+    environment:
+      POSTGRES_USER: "${DATABASE_USERNAME}"
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
+      POSTGRES_DB: "${DATABASE_NAME}"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
     volumes:
       - pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_NAME}"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: ${COMPOSE_PROJECT_NAME}
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_NAME: ${DB_NAME}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-      SPRING_PROFILES_ACTIVE: local
-    ports:
-      - "${APP_PORT:-8080}:8080"
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    env_file:
+      - .env
 
 volumes:
   pgdata:
