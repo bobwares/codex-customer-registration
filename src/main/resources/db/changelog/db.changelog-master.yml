@@ -1,0 +1,14 @@
+# **
+# * App: Customer Registration
+# * Package: db.changelog
+# * File: db.changelog-master.yml
+# * Version: 0.1.0
+# * Turns: 1
+# * Author: AI Agent
+# * Date: 2025-10-29T22:24:49Z
+# * Exports: liquibase-master
+# * Description: Liquibase master changelog orchestrating database migrations.
+# **
+databaseChangeLog:
+  - include:
+      file: classpath:db/changelog/01-customer-profile-tables.sql
