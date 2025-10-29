@@ -1,0 +1,20 @@
+# Session Context
+
+- SANDBOX_BASE_DIRECTORY: /workspace
+- AGENTIC_PIPELINE_PROJECT: /workspace/codex-agentic-ai-pipeline
+- TARGET_PROJECT: /workspace/codex-customer-registration-java
+- PROJECT_CONTEXT: /workspace/codex-customer-registration-java/ai/context/project_context.md
+- ACTIVE_PATTERN_NAME: spring-boot-mvc-jpa-postgresql
+- ACTIVE_PATTERN_PATH: /workspace/codex-agentic-ai-pipeline/application-implementation-patterns/spring-boot-mvc-jpa-postgresql
+- EXECUTION_PLAN: /workspace/codex-agentic-ai-pipeline/application-implementation-patterns/spring-boot-mvc-jpa-postgresql/execution-plan.md
+- TURN_ID: 1
+- CURRENT_TURN_DIRECTORY: /workspace/codex-customer-registration-java/ai/agentic-pipeline/turns/1
+- TEMPLATES: /workspace/codex-agentic-ai-pipeline/agentic-pipeline/templates
+- TEMPLATE_METADATA_HEADER: /workspace/codex-agentic-ai-pipeline/agentic-pipeline/templates/governance/metadata_header.md
+- TEMPLATE_BRANCH_NAMING: /workspace/codex-agentic-ai-pipeline/agentic-pipeline/templates/governance/branch_naming.md
+- TEMPLATE_COMMIT_MESSAGE: /workspace/codex-agentic-ai-pipeline/agentic-pipeline/templates/governance/commit_message.md
+- TEMPLATE_PULL_REQUEST: /workspace/codex-agentic-ai-pipeline/agentic-pipeline/templates/pr/pull_request_template.md
+- TEMPLATE_ADR: /workspace/codex-agentic-ai-pipeline/agentic-pipeline/templates/adr/adr_template.md
+- TEMPLATE_MANIFEST_SCHEMA: /workspace/codex-agentic-ai-pipeline/agentic-pipeline/templates/turn/manifest.schema.json
+- CODING_AGENTS_DIRECTORY: /workspace/codex-agentic-ai-pipeline/coding-agents
+- CONTAINER_TASKS: /workspace/codex-agentic-ai-pipeline/container/tasks

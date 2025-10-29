@@ -1,0 +1,9 @@
+@host = http://localhost:{{APP_PORT:8080}}
+
+### Actuator health
+GET {{host}}/actuator/health
+Accept: application/json
+
+### Actuator info
+GET {{host}}/actuator/info
+Accept: application/json

@@ -1,0 +1,54 @@
+@host = http://localhost:{{APP_PORT:8080}}
+@customerId = {{customerId}}
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Alan",
+  "middleName": "Mathison",
+  "lastName": "Turing",
+  "emails": ["alan.turing@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+15555550123"
+    }
+  ],
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  }
+}
+
+> {% client.global.set("customerId", response.body.id); %}
+
+### Get customer
+GET {{host}}/api/customers/{{customerId}}
+Accept: application/json
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "firstName": "Alan",
+  "lastName": "Turing",
+  "emails": ["alan.turing@example.com", "a.turing@example.com"],
+  "privacySettings": {
+    "marketingEmailsEnabled": false,
+    "twoFactorEnabled": true
+  }
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Confirm deletion
+GET {{host}}/api/customers/{{customerId}}
+Accept: application/json
+
+> {% client.test("Should return 404 after deletion", function() {
+    client.assert(response.status === 404);
+}); %}
