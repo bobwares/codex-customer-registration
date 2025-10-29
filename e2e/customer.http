@@ -1,0 +1,78 @@
+# App: Customer Registration
+# Package: e2e
+# File: customer.http
+# Version: 0.1.0
+# Turns: 1
+# Author: AI Coding Agent
+# Date: 2025-10-29T16:56:41Z
+# Exports: customer CRUD scenario
+# Description: Demonstrates create, read, update, delete flow for customer API.
+
+@host = http://localhost:8080
+@customerId =
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "emails": ["alice@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+12025550123"
+    }
+  ],
+  "address": {
+    "line1": "123 Main",
+    "city": "City",
+    "state": "ST",
+    "postalCode": "12345",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  }
+}
+
+> {% client.global.set("customerId", response.body.id); %}
+
+### Get customer
+GET {{host}}/api/customers/{{customerId}}
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "firstName": "Bob",
+  "lastName": "Jones",
+  "emails": ["bob@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "HOME",
+      "number": "+12025550124"
+    }
+  ],
+  "address": {
+    "line1": "456 Elm",
+    "line2": "Suite 2",
+    "city": "Town",
+    "state": "TS",
+    "postalCode": "67890",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": false,
+    "twoFactorEnabled": true
+  }
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Confirm deletion returns 404
+GET {{host}}/api/customers/{{customerId}}

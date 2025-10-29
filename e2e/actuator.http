@@ -1,0 +1,17 @@
+# App: Customer Registration
+# Package: e2e
+# File: actuator.http
+# Version: 0.1.0
+# Turns: 1
+# Author: AI Coding Agent
+# Date: 2025-10-29T16:56:41Z
+# Exports: actuator health/info requests
+# Description: Provides actuator health and info endpoint smoke checks.
+
+@host = http://localhost:8080
+
+### Health check
+GET {{host}}/actuator/health
+
+### Info endpoint
+GET {{host}}/actuator/info
