@@ -1,0 +1,61 @@
+# App: Customer Registration
+# Package: src.main.resources
+# File: application.yml
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-30T01:18:45Z
+# Exports: spring configuration
+# Description: Configures core Spring Boot, Liquibase, datasource, and observability settings.
+
+spring:
+  application:
+    name: ${APP_NAME}
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc.time_zone: UTC
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    enabled: true
+    default-schema: ${DATABASE_SCHEMA:public}
+    contexts: ${LIQUIBASE_CONTEXTS:}
+  main:
+    allow-bean-definition-overriding: false
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  port: ${APP_PORT}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+  observations:
+    key-values:
+      application: ${APP_NAME}
+
+app:
+  name: ${APP_NAME}
+  port: ${APP_PORT}
+  default-tax-rate: ${APP_DEFAULT_TAX_RATE:0}
+  default-shipping-cost: ${APP_DEFAULT_SHIPPING_COST:0}
+  supported-currencies: ${APP_SUPPORTED_CURRENCIES:USD}

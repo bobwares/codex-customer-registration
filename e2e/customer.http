@@ -1,0 +1,89 @@
+# App: Customer Registration
+# Package: e2e
+# File: customer.http
+# Version: 0.1.0
+# Turns: 1
+# Author: Bobwares (bobwares@outlook.com)
+# Date: 2025-10-30T01:18:45Z
+# Exports: CRUD customer workflow
+# Description: Demonstrates create, read, update, delete operations for the customer API.
+
+@host = http://localhost:{{PORT:8080}}
+@customerId = {{customerId}}
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Alice",
+  "middleName": "Q",
+  "lastName": "Example",
+  "emails": ["alice@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "mobile",
+      "number": "+18005550101"
+    }
+  ],
+  "address": {
+    "line1": "123 Market",
+    "line2": "Suite 100",
+    "city": "San Francisco",
+    "state": "CA",
+    "postalCode": "94105",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  }
+}
+
+> {% client.global.set("customerId", response.body.id); %}
+
+### Get customer
+GET {{host}}/api/customers/{{customerId}}
+Accept: application/json
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Alicia",
+  "middleName": "Q",
+  "lastName": "Example",
+  "emails": ["alice@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "+18005550102"
+    }
+  ],
+  "address": {
+    "line1": "500 Howard",
+    "line2": null,
+    "city": "San Francisco",
+    "state": "CA",
+    "postalCode": "94105",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": false,
+    "twoFactorEnabled": true
+  }
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Verify deletion
+GET {{host}}/api/customers/{{customerId}}
+Accept: application/json
+
+> {% client.test("Customer is deleted", function() {
+  client.assert(response.status === 404);
+}); %}
