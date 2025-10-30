@@ -1,0 +1,55 @@
+# App: Customer Registration
+# Package: resources
+# File: application.yml
+# Version: 0.1.0
+# Turns: Turn 1
+# Author: Bobwares
+# Date: 2025-10-30T08:07:15Z
+# Exports: Spring configuration
+# Description: Centralized Spring Boot configuration leveraging environment-driven properties.
+
+spring:
+  application:
+    name: ${APP_NAME:customer-registration}
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:customer_registration}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc.time_zone: UTC
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    enabled: true
+  main:
+    allow-bean-definition-overriding: false
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+server:
+  port: ${APP_PORT:8080}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  observations:
+    key-values:
+      application: ${APP_NAME:customer-registration}
+app:
+  name: ${APP_NAME:customer-registration}
+  default-tax-rate: ${APP_DEFAULT_TAX_RATE:0.00}
+  default-shipping-cost: ${APP_DEFAULT_SHIPPING_COST:0.00}
+  supported-currencies: ${APP_SUPPORTED_CURRENCIES:USD}

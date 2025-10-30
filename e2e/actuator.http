@@ -1,0 +1,20 @@
+# App: Customer Registration
+# Package: e2e
+# File: actuator.http
+# Version: 0.1.0
+# Turns: Turn 1
+# Author: Bobwares
+# Date: 2025-10-30T08:07:15Z
+# Exports: Actuator probes
+# Description: Quick checks for actuator and metadata endpoints.
+
+@host = http://localhost:8080
+
+### Health
+GET {{host}}/actuator/health
+
+### Info
+GET {{host}}/actuator/info
+
+### Meta
+GET {{host}}/meta/env

@@ -1,0 +1,50 @@
+# App: Customer Registration
+# Package: root
+# File: .gitignore
+# Version: 0.1.0
+# Turns: Turn 1
+# Author: Bobwares
+# Date: 2025-10-30T08:07:15Z
+# Exports: Git ignore rules
+# Description: Standard ignore rules for Spring Boot Maven project.
+
+.env*
+/ai/project-parser/output
+
+.DS_Store
+/ai/output
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+.DS_Store
+**/.DS_Store
