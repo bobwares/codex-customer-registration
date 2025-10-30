@@ -1,0 +1,85 @@
+### App: Customer Registration
+### Package: com.bobwares.customer.registration
+### File: Customer.http
+### Version: 0.1.0
+### Turns: Turn 1
+### Author: Bobwares
+### Date: 2025-10-30T06:53:03Z
+### Exports: CustomerCrudScenario
+### Description: Demonstrates full customer CRUD workflow via HTTP requests.
+@host = http://localhost:{{port=8080}}
+@customerId = {{customerId}}
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Taylor",
+  "middleName": "J.",
+  "lastName": "Morgan",
+  "address": {
+    "line1": "42 Galaxy Way",
+    "line2": "",
+    "city": "Austin",
+    "state": "TX",
+    "postalCode": "73301",
+    "country": "US"
+  },
+  "privacy": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  },
+  "emails": [
+    "taylor.morgan@example.com"
+  ],
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+15125550123"
+    }
+  ]
+}
+> {% client.global.set("customerId", response.body.id); %}
+
+### Get created customer
+GET {{host}}/api/customers/{{customerId}}
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "firstName": "Taylor",
+  "middleName": "James",
+  "lastName": "Morgan",
+  "address": {
+    "line1": "42 Galaxy Way",
+    "line2": "Suite 900",
+    "city": "Austin",
+    "state": "TX",
+    "postalCode": "73301",
+    "country": "US"
+  },
+  "privacy": {
+    "marketingEmailsEnabled": false,
+    "twoFactorEnabled": true
+  },
+  "emails": [
+    "taylor.morgan@example.com",
+    "taylor.alt@example.com"
+  ],
+  "phoneNumbers": [
+    {
+      "type": "WORK",
+      "number": "+15125550666"
+    }
+  ]
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Confirm deletion
+GET {{host}}/api/customers/{{customerId}}
+

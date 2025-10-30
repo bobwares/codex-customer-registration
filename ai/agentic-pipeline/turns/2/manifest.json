@@ -1,0 +1,107 @@
+{
+  "turnId": 2,
+  "tasks": [
+    {
+      "taskId": "agent-sql-ddl-generator",
+      "agent": "sql-ddl-generator",
+      "inputs": [
+        "schema=ai/context/schemas/customer.schema.json"
+      ],
+      "outputs": [],
+      "validations": []
+    },
+    {
+      "taskId": "TASK-01-Initialize-Project",
+      "agent": "manual",
+      "inputs": [
+        "project_context",
+        "pattern_context"
+      ],
+      "outputs": [],
+      "validations": []
+    },
+    {
+      "taskId": "TASK-Create-Docker-Compose-for-PostgreSQL",
+      "agent": "manual",
+      "inputs": [
+        "docker instructions"
+      ],
+      "outputs": [],
+      "validations": []
+    },
+    {
+      "taskId": "TASK-Create-Persistence-Layer",
+      "agent": "manual",
+      "inputs": [
+        "customer schema"
+      ],
+      "outputs": [],
+      "validations": []
+    },
+    {
+      "taskId": "TASK-Create-REST-Service",
+      "agent": "manual",
+      "inputs": [
+        "service requirements"
+      ],
+      "outputs": [],
+      "validations": [
+        {
+          "rule": "mvn -q verify",
+          "status": "pass",
+          "details": "H2 fallback path executed because Docker is unavailable in the environment."
+        }
+      ]
+    },
+    {
+      "taskId": "TASK-Create-Project-Markdown-File",
+      "agent": "manual",
+      "inputs": [
+        "turn artifacts"
+      ],
+      "outputs": [
+        {
+          "path": "ai/agentic-pipeline/turns/2/project-files.md",
+          "sha256": "d2231e9f9ef61b648727a67e218c3f7672e7132768ff54744f97697b1902243c"
+        },
+        {
+          "path": "ai/agentic-pipeline/turns/2/pull_request.md",
+          "sha256": "4d885774be10d11fb5f3a9c81a67bf3f3e90eca114386102d1aa7adc6df1595d"
+        }
+      ],
+      "validations": []
+    }
+  ],
+  "provenance": {
+    "promptHash": "manual-entry",
+    "tools": [
+      "shell"
+    ],
+    "startedAt": "2025-10-30T07:14:43Z",
+    "finishedAt": "2025-10-30T07:15:13Z",
+    "activePatternName": "spring-boot-mvc-jpa-postgresql",
+    "activePatternPath": "/workspace/codex-agentic-ai-pipeline/application-implementation-patterns/spring-boot-mvc-jpa-postgresql"
+  },
+  "outputs": [
+    {
+      "path": "ai/agentic-pipeline/turns_index.csv",
+      "sha256": "33ba3d8b9aeb936b4f54d031471cb8463fbc83c306526465a2fa70d0b6ae5ea0"
+    },
+    {
+      "path": "ai/agentic-pipeline/turns/2/session_context.md",
+      "sha256": "b545d210b3e11d5e2cf9fc125745eed6b80711f10b2793ac04477e46ea99c51c"
+    },
+    {
+      "path": "ai/agentic-pipeline/turns/2/adr.md",
+      "sha256": "a20fb6b7b514af051b10767fe06391108f9dc0754080e126bb5680fed87a1475"
+    },
+    {
+      "path": "ai/agentic-pipeline/turns/2/project-files.md",
+      "sha256": "d2231e9f9ef61b648727a67e218c3f7672e7132768ff54744f97697b1902243c"
+    },
+    {
+      "path": "ai/agentic-pipeline/turns/2/pull_request.md",
+      "sha256": "4d885774be10d11fb5f3a9c81a67bf3f3e90eca114386102d1aa7adc6df1595d"
+    }
+  ]
+}

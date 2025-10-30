@@ -1,0 +1,12 @@
+# App: Customer Registration
+# Package: com.bobwares.customer.registration
+# File: db.changelog-master.yml
+# Version: 0.1.0
+# Turns: Turn 1
+# Author: Bobwares
+# Date: 2025-10-30T06:53:03Z
+# Exports: LiquibaseMasterChangeLog
+# Description: Aggregates Liquibase changesets for initializing the customer registration schema.
+databaseChangeLog:
+  - include:
+      file: classpath:db/changelog/changeset-create-customer-tables.yml
