@@ -1,0 +1,16 @@
+### App: Customer Registration
+### Package: com.bobwares.customer.registration
+### File: actuator.http
+### Version: 0.1.0
+### Turns: Turn 1
+### Author: Bobwares
+### Date: 2025-10-30T06:53:03Z
+### Exports: ActuatorScenario
+### Description: HTTP collection verifying health and info endpoints for the running service.
+@host = http://localhost:{{port=8080}}
+
+### Health check
+GET {{host}}/actuator/health
+
+### Info
+GET {{host}}/actuator/info

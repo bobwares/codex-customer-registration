@@ -1,0 +1,24 @@
+<!--
+ * App: Customer Registration
+ * Package: com.bobwares.customer.registration
+ * File: checkstyle.xml
+ * Version: 0.1.0
+ * Turns: Turn 1
+ * Author: Bobwares
+ * Date: 2025-10-30T06:53:03Z
+ * Exports: CheckstyleConfiguration
+ * Description: Configures a focused set of style checks for the project Java sources.
+-->
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+  <property name="severity" value="warning"/>
+  <module name="TreeWalker">
+    <module name="UnusedImports"/>
+    <module name="NeedBraces"/>
+    <module name="WhitespaceAround"/>
+    <module name="FinalLocalVariable"/>
+    <module name="LocalVariableName"/>
+    <module name="MethodName"/>
+  </module>
+</module>

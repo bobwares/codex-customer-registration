@@ -1,0 +1,114 @@
+{
+  "turnId": 1,
+  "tasks": [
+    {
+      "taskId": "agent-sql-ddl-generator",
+      "agent": "sql-ddl-generator",
+      "inputs": [
+        "schema=ai/context/schemas/customer.schema.json"
+      ],
+      "outputs": [
+        {
+          "path": "src/main/resources/db/changelog/sql/create-customer-tables.sql",
+          "sha256": "b5767f960ad33d1159398f6ba170183cef62ce9b0e3352229f81b8e7038f12ea"
+        },
+        {
+          "path": "db/init/001-create-customer-schema.sql",
+          "sha256": "f1f30ba264d08e2f44255a70565f52253d5183e804f2c55ecabb6d84fb1bb401"
+        }
+      ],
+      "validations": []
+    },
+    {
+      "taskId": "TASK-01-Initialize-Project",
+      "agent": "manual",
+      "inputs": [
+        "project_context",
+        "pattern_context"
+      ],
+      "outputs": [
+        {"path": ".gitignore", "sha256": "e8364aa9b553a9c1d3d100669f2a047802c990a9b32deb64d2d112cf3f476443"},
+        {"path": "pom.xml", "sha256": "6f91fc6a9ed9817f695063c0b78a84991395d22aa2ff9f264d6a08965dfb5b93"},
+        {"path": "src/main/java/com/bobwares/customer/registration/Application.java", "sha256": "ed54ec097996495c29309e1a3c2c0990b08a2e751561215623e484d169584c68"},
+        {"path": "src/main/java/com/bobwares/customer/registration/config/AppProperties.java", "sha256": "c3e401d453abf807b01d74f1771dd70d79d27d36bde1770def0a3ae370b4bc06"},
+        {"path": "src/main/java/com/bobwares/customer/registration/web/MetaController.java", "sha256": "0f197a58fa05a099a2f48199cf9fadf1d02a24f3d80992a756c773dcc148cbb4"},
+        {"path": "src/main/resources/application.yml", "sha256": "8e5be6ec91c460b874cfc21325055c50e2add56309a78c7486a56ede61740050"},
+        {"path": "src/test/java/com/bobwares/customer/registration/ApplicationSmokeTest.java", "sha256": "40f4292c72b25e072ebd92bac6fe33bdb8a020df6d98e3013a8afcb428302bf1"},
+        {"path": "README-config.md", "sha256": "1aeb0e08a68dcba68c06467e8c07a0c7d1d6dd59c104a56261347e356c59f02e"},
+        {"path": "e2e/actuator.http", "sha256": "454031c50a1e07eb756af1f6144faf117b4db03a8d7f3abbc1f11db65b3bb8af"}
+      ],
+      "validations": []
+    },
+    {
+      "taskId": "TASK-Create-Docker-Compose-for-PostgreSQL",
+      "agent": "manual",
+      "inputs": ["docker instructions"],
+      "outputs": [
+        {"path": "docker-compose.yml", "sha256": "a54a25026e2e630e63c089d0d1d819fae071e7646694adf016cfccdfbc1a6e20"},
+        {"path": "README.md", "sha256": "11ef2dd5a1f4c1a653843f773e8a94d3425fa417989562fce700fb336bb91d84"}
+      ],
+      "validations": []
+    },
+    {
+      "taskId": "TASK-Create-Persistence-Layer",
+      "agent": "manual",
+      "inputs": ["customer schema"],
+      "outputs": [
+        {"path": "src/main/java/com/bobwares/customer/registration/model/Customer.java", "sha256": "c5adb32dee7db02ee906c9c8d23ba5941e20334171b32274d90ff42238fe5a0e"},
+        {"path": "src/main/java/com/bobwares/customer/registration/model/CustomerEmail.java", "sha256": "4822b71878cc78c4ac1073b838ba8291cd13e3c90ebc4008c0eeed9738c0dc92"},
+        {"path": "src/main/java/com/bobwares/customer/registration/model/CustomerPhoneNumber.java", "sha256": "8b84e8f2e1de19f9bdfb12e5c72763a43dcf1bc4dc613ab9bc9a55c0ccedc224"},
+        {"path": "src/main/java/com/bobwares/customer/registration/model/PhoneNumberType.java", "sha256": "8f55ea7b1854bc2e90d8b79da8b339758ef36347075599ba366833bf878acdbc"},
+        {"path": "src/main/java/com/bobwares/customer/registration/model/PostalAddress.java", "sha256": "40a9f4098300f395f8a58afa3276a7fd54f32e841bec2167a0f0cb9f6de536c6"},
+        {"path": "src/main/java/com/bobwares/customer/registration/model/PrivacySettings.java", "sha256": "fe750bc8128580ffd09579d5e02ba4e7ef8046161d0ef86b9a873f9c50d3feee"},
+        {"path": "src/main/java/com/bobwares/customer/registration/repository/CustomerRepository.java", "sha256": "ccf1b50e53afce0a41702a75b2b2d824c8e85f67f5aba39c4ddc945c38aaa185"}
+      ],
+      "validations": []
+    },
+    {
+      "taskId": "TASK-Create-REST-Service",
+      "agent": "manual",
+      "inputs": ["service requirements"],
+      "outputs": [
+        {"path": "src/main/java/com/bobwares/customer/registration/service/CustomerService.java", "sha256": "b1bc5433b67d8d39887bca6c759db8bd3866726f160e6e6bb5ba5ac254eb9e48"},
+        {"path": "src/main/java/com/bobwares/customer/registration/api/CustomerController.java", "sha256": "fbe7650ad3e9581624cfc647e788da659d575e949ba6268ee1e35fd19c11040b"},
+        {"path": "src/main/java/com/bobwares/customer/registration/api/CustomerDto.java", "sha256": "fb908d0a48389a1e9da1eee9c325097bfa513b5b22c6bfea18c19cd1aa8dc402"},
+        {"path": "src/main/java/com/bobwares/customer/registration/web/RestExceptionHandler.java", "sha256": "826dbb0d7468611bf6c33960aa442c5cf3cbf683638928e309376e3f8dd5a5ba"},
+        {"path": "src/test/java/com/bobwares/customer/registration/service/CustomerServiceTests.java", "sha256": "0f1100bcfc6dbb094a6b1be4dead9dee62acfd1b78825ce4dab3f2e42a2dfe29"},
+        {"path": "src/test/java/com/bobwares/customer/registration/api/CustomerControllerIT.java", "sha256": "f1b93fb9b7a69337cf1857ed1f9f68e9b2ac4b00a34bc86d21dfd709787467c5"},
+        {"path": "e2e/Customer.http", "sha256": "92de63fae0112fc9e938e1aa33f47d2155129010677c2a6931594ced5b510edc"}
+      ],
+      "validations": [
+        {
+          "rule": "mvn -q verify",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "taskId": "TASK-Create-Project-Markdown-File",
+      "agent": "manual",
+      "inputs": ["manifest"],
+      "outputs": [],
+      "validations": []
+    }
+  ],
+  "provenance": {
+    "promptHash": "manual-entry",
+    "tools": ["shell"],
+    "startedAt": "2025-10-30T06:53:03Z",
+    "finishedAt": "2025-10-30T07:07:43Z",
+    "activePatternName": "spring-boot-mvc-jpa-postgresql",
+    "activePatternPath": "/workspace/codex-agentic-ai-pipeline/application-implementation-patterns/spring-boot-mvc-jpa-postgresql"
+  },
+  "outputs": [
+    {"path": "README.md", "sha256": "11ef2dd5a1f4c1a653843f773e8a94d3425fa417989562fce700fb336bb91d84"},
+    {"path": "README-config.md", "sha256": "1aeb0e08a68dcba68c06467e8c07a0c7d1d6dd59c104a56261347e356c59f02e"},
+    {"path": "docker-compose.yml", "sha256": "a54a25026e2e630e63c089d0d1d819fae071e7646694adf016cfccdfbc1a6e20"},
+    {"path": "pom.xml", "sha256": "6f91fc6a9ed9817f695063c0b78a84991395d22aa2ff9f264d6a08965dfb5b93"},
+    {"path": "src/main/resources/application.yml", "sha256": "8e5be6ec91c460b874cfc21325055c50e2add56309a78c7486a56ede61740050"},
+    {"path": "src/main/java/com/bobwares/customer/registration/service/CustomerService.java", "sha256": "b1bc5433b67d8d39887bca6c759db8bd3866726f160e6e6bb5ba5ac254eb9e48"},
+    {"path": "src/test/java/com/bobwares/customer/registration/service/CustomerServiceTests.java", "sha256": "0f1100bcfc6dbb094a6b1be4dead9dee62acfd1b78825ce4dab3f2e42a2dfe29"},
+    {"path": "e2e/Customer.http", "sha256": "92de63fae0112fc9e938e1aa33f47d2155129010677c2a6931594ced5b510edc"},
+    {"path": "ai/agentic-pipeline/turns/1/session_context.md", "sha256": "5dbf2b96d6b3f4be3f93be1d6429ed7f00fccd53b2e4c626e31f3a5df2ae61e4"}
+  ]
+}
