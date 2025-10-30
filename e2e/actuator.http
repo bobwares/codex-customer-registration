@@ -1,15 +1,19 @@
 # App: Customer Registration
 # Package: e2e
-# File: health.http
+# File: actuator.http
 # Version: 0.1.0
 # Turns: 1
 # Author: Bobwares (bobwares@outlook.com)
 # Date: 2025-10-30T01:18:45Z
-# Exports: GET /actuator/health
-# Description: Checks the actuator health endpoint for liveness.
+# Exports: GET /actuator endpoints
+# Description: Exercises actuator health and info endpoints.
 
 @host = http://localhost:{{PORT:8080}}
 
 ### Health
 GET {{host}}/actuator/health
+Accept: application/json
+
+### Info
+GET {{host}}/actuator/info
 Accept: application/json
