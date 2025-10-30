@@ -1,0 +1,84 @@
+# App: Customer Registration
+# Package: e2e
+# File: customer.http
+# Version: 0.1.0
+# Turns: Turn 1
+# Author: Bobwares
+# Date: 2025-10-30T08:07:15Z
+# Exports: Customer CRUD scenario
+# Description: HTTP collection performing create, read, update, delete flow for customer API.
+
+@host = http://localhost:8080
+
+### Create customer
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "middleName": "Q",
+  "lastName": "Doe",
+  "emails": ["user@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+15551234567"
+    }
+  ],
+  "address": {
+    "line1": "123 Main",
+    "line2": "",
+    "city": "City",
+    "state": "State",
+    "postalCode": "12345",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  }
+}
+
+> {% client.global.set("customerId", response.body.id); %}
+
+### Get customer
+GET {{host}}/api/customers/{{customerId}}
+
+### Update customer
+PUT {{host}}/api/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "middleName": "Q",
+  "lastName": "Doe-Updated",
+  "emails": ["user@example.com"],
+  "phoneNumbers": [
+    {
+      "type": "MOBILE",
+      "number": "+15551234567"
+    }
+  ],
+  "address": {
+    "line1": "123 Main",
+    "line2": "",
+    "city": "City",
+    "state": "State",
+    "postalCode": "12345",
+    "country": "US"
+  },
+  "privacySettings": {
+    "marketingEmailsEnabled": true,
+    "twoFactorEnabled": true
+  }
+}
+
+### Delete customer
+DELETE {{host}}/api/customers/{{customerId}}
+
+### Confirm deletion
+GET {{host}}/api/customers/{{customerId}}
+
+> {%- if response.status == 404 -%}
+>   Customer deleted successfully.
+> {%- endif -%}
